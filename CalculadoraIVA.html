@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de IVA</title>
+</head>
+<body>
+    <style>
+        @import url('https://fonts.googleapis.com/css2? family= Lora & display=swap');
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #20005a;
+            font-family: 'Lora', serif;
+        }
+    
+        .container {
+            text-align: center;
+        }
+    
+        .card {
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.514);
+            border-radius: 30px;
+            padding: 20px;
+            width: 300px;
+        }
+        .card>input {
+            height: 30px;
+            border-radius: 30px;
+            text-align: center;
+            border: none;
+            border: 1px solid grey;
+            margin-bottom: 10px;
+        }
+    
+        .card>.btns>input {
+            padding: 10px;
+            border-radius: 30px;
+            color: white;
+            background-color: blueviolet;
+            border: none;
+            cursor: pointer;
+        }
+    
+        .card>.btns>input:hover {
+            background-color: blue;
+        }
+    
+        .card>.btns {
+            padding: 20px;
+        }
+    </style>
+    <div class='container'>
+        <div class='card'>
+            <h1>Calculadora de IVA</h1>
+            <input type="text"  id="PrecioOriginal" placeholder='Escriba el Precio Original'>
+            <div class='btns'>
+                <input type="submit" value="Calcular Precio Total" onclick='CalcularIVA()'>
+                <input type="reset" value="Borrar" onclick='borrar()'>
+            </div>
+            <div>
+                <h2 id='Resultado'></h2>
+            </div>
+        </div>
+    </div>
+    <script>
+        function CalcularIVA()
+        {
+            // Obtener el valor del campo de entrada
+            let precioOriginal = document.getElementById("PrecioOriginal").value;
+              // Verificar si el valor es válido (no está vacío y es un número)
+            if (precioOriginal !== "" && !isNaN(parseFloat(precioOriginal))) {
+                  // Calcular el total si el valor es válido
+                  let IVA = parseFloat(precioOriginal) * (15 / 100);
+                    let total = parseFloat(precioOriginal) + IVA;
+                  // Mostrar el resultado
+                let resultad = document.getElementById("Resultado");
+                resultad.innerText = `El Resultado Total del Producto Es De: C$ ${total.toFixed(2)}`;
+            } else {
+                  // Mostrar un mensaje de error si el valor no es válido
+                alert("Por favor, ingrese un precio válido.");
+            }
+        }
+        function borrar()
+        {
+            let precioOriginal = document.getElementById("PrecioOriginal");
+            precioOriginal.value = "";
+            let resultad = document.getElementById("Resultado");
+            resultad.innerHTML = "";
+        }
+
+    </script>
+</body>
+</html>
